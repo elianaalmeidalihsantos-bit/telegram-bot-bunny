@@ -1,2 +1,3 @@
 telethon
 requests
+telethon-session-sqlalchemy
