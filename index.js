@@ -2,8 +2,16 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const token = process.env.BOT_TOKEN;
 
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, {
+  polling: true
+});
 
-bot.on('message', (msg) => {
-  bot.sendMessage(msg.chat.id, 'Bot funcionando.');
+bot.onText(/\/start/, (msg) => {
+  bot.sendMessage(msg.chat.id, 'Bot online 🚀');
+});
+
+bot.on('message', async (msg) => {
+  if (msg.video) {
+    bot.sendMessage(msg.chat.id, 'Vídeo recebido 👀');
+  }
 });
