@@ -14,6 +14,10 @@ client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
 @client.on(events.NewMessage)
 async def handler(event):
+    # Só funciona no privado. Ignora canal/grupo.
+    if not event.is_private:
+        return
+
     if not event.video and not event.document:
         return
 
